@@ -172,11 +172,13 @@
         .hamburger {
             display: none;
             flex-direction: column;
+            justify-content: center;
             gap: 5px;
             cursor: pointer;
             background: none;
             border: none;
             padding: 4px;
+            margin-left: auto;
         }
         .hamburger span {
             width: 20px; height: 2px;
@@ -992,8 +994,42 @@
             .projects-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
             .hamburger { display: flex; z-index: 1001; }
+            nav {
+                top: 0;
+                left: 0;
+                right: 0;
+                transform: none;
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0 0 20px 20px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                padding: 12px 24px;
+            }
+            .nav-links {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.35s ease, padding 0.3s ease;
+                padding: 0;
+                width: 100%;
+            }
+            .nav-links.open {
+                max-height: 400px;
+                padding: 12px 0 4px;
+            }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a {
+                display: block;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
             section { padding: 72px 20px; }
             .hero { padding: 100px 20px 60px; }
             .about-stats { grid-template-columns: 1fr 1fr; }
@@ -1393,19 +1429,21 @@
             : 'rgba(28,28,30,0.75)';
     });
 
-    // Hamburger + drawer
+    // Hamburger menu
     const hamburger = document.getElementById('hamburger');
-    const navDrawer = document.getElementById('navDrawer');
+    const navLinks  = document.getElementById('navLinks');
     
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
-        navDrawer.classList.toggle('open');
+        navLinks.classList.toggle('open');
     });
     
-    function closeDrawer() {
-        hamburger.classList.remove('active');
-        navDrawer.classList.remove('open');
-    }
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
     
     // Scroll reveal with stagger
     const revealElements = document.querySelectorAll('.reveal');
