@@ -992,11 +992,39 @@
             .projects-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
             .hamburger { display: flex; z-index: 1001; }
             section { padding: 72px 20px; }
             .hero { padding: 100px 20px 60px; }
             .about-stats { grid-template-columns: 1fr 1fr; }
+        
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(10, 10, 12, 0.97);
+                backdrop-filter: blur(40px);
+                -webkit-backdrop-filter: blur(40px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                z-index: 999;
+                border-radius: 0;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links li a {
+                font-size: 1.4rem;
+                padding: 14px 32px;
+                color: var(--text);
+            }
+            .nav-links li a.nav-cta {
+                margin-top: 16px;
+                background: var(--blue);
+                color: #fff;
+                border-radius: 100px;
+            }
         }
         @media (max-width: 480px) {
             .about-stats { grid-template-columns: 1fr; }
@@ -1025,7 +1053,7 @@
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
-        <ul class="nav-links" id="navLinks">
+        <ul class="nav-links" id="navDrawer">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -1406,7 +1434,9 @@
         hamburger.classList.remove('active');
         navDrawer.classList.remove('open');
     }
-    
+    document.querySelectorAll('#navDrawer a').forEach(link => {
+    link.addEventListener('click', closeDrawer);
+    });
     // Scroll reveal with stagger
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
