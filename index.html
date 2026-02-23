@@ -139,11 +139,17 @@
             justify-content: center;
             color: white;
         }
+        /* Add this to hide the nav links by default */
         .nav-links {
+            display: none;
+        }
+        
+        /* Show the nav links when .show is added */
+        .nav-links.show {
             display: flex;
-            gap: 4px;
-            list-style: none;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
         }
         .nav-links a {
             color: var(--text-secondary);
@@ -992,12 +998,43 @@
             .projects-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; z-index: 1001; }
-            section { padding: 72px 20px; }
-            .hero { padding: 100px 20px 60px; }
-            .about-stats { grid-template-columns: 1fr 1fr; }
+        /* Hide the nav links by default */
+        .nav-links {
+            display: none;
         }
+    
+        /* Show the hamburger menu */
+        .hamburger {
+            display: flex;
+            z-index: 1001; /* Ensure it stays above other elements */
+        }
+    
+        /* Adjust navbar layout to stack items vertically */
+        .nav-inner {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    
+        /* Spacing adjustments for mobile */
+        .nav-logo {
+            margin-bottom: 16px; /* Space below the logo */
+        }
+    
+        /* Adjust section padding */
+        section { 
+            padding: 72px 20px; 
+        }
+    
+        /* Adjust hero section padding */
+        .hero { 
+            padding: 100px 20px 60px; 
+        }
+    
+        /* Adjust about stats grid layout */
+        .about-stats { 
+            grid-template-columns: 1fr 1fr; 
+        }
+    }
         @media (max-width: 480px) {
             .about-stats { grid-template-columns: 1fr; }
             .hero-actions { flex-direction: column; align-items: center; }
@@ -1446,7 +1483,16 @@
         }
         setTimeout(typeChar, 1200);
     }
+    
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+        hamburger.classList.toggle("active");
+    });
 </script>
+</body>
 
 </body>
 </html>
