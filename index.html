@@ -188,6 +188,96 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
+        /* ===== MOBILE NAV ===== */
+        @media (max-width: 768px) {
+            nav {
+                left: 16px;
+                right: 16px;
+                transform: none;
+                width: auto;
+                max-width: none;
+                padding: 10px 20px;
+                border-radius: 20px;
+                transition: all 0.3s ease, border-radius 0.3s ease;
+            }
+            nav.drawer-open {
+                border-radius: 20px 20px 0 0;
+                border-bottom-color: transparent;
+            }
+            .nav-inner {
+                justify-content: space-between;
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: -1px;
+                right: -1px;
+                width: auto;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(28, 28, 30, 0.88);
+                backdrop-filter: blur(40px) saturate(1.8);
+                -webkit-backdrop-filter: blur(40px) saturate(1.8);
+                border: 1px solid var(--border);
+                border-top: none;
+                border-radius: 0 0 20px 20px;
+                padding: 8px 12px 14px;
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-8px);
+                pointer-events: none;
+                transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+                display: flex;
+            }
+            .nav-links.open {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+            .nav-links li {
+                width: 100%;
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            .nav-links.open li {
+                opacity: 1;
+                transform: translateY(0);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+            .nav-links.open li:nth-child(1) { transition-delay: 0.03s; }
+            .nav-links.open li:nth-child(2) { transition-delay: 0.06s; }
+            .nav-links.open li:nth-child(3) { transition-delay: 0.09s; }
+            .nav-links.open li:nth-child(4) { transition-delay: 0.12s; }
+            .nav-links.open li:nth-child(5) { transition-delay: 0.15s; }
+            .nav-links.open li:nth-child(6) { transition-delay: 0.18s; }
+            .nav-links a {
+                display: block;
+                font-size: 0.95rem;
+                padding: 12px 16px;
+                border-radius: 12px;
+                color: var(--text-secondary);
+                transition: color 0.2s ease, background 0.2s ease;
+                text-align: left;
+            }
+            .nav-links a:hover,
+            .nav-links a:active {
+                color: var(--text);
+                background: rgba(255, 255, 255, 0.08);
+            }
+            .nav-links .nav-cta {
+                margin-top: 4px;
+                background: var(--blue) !important;
+                color: #fff !important;
+                font-weight: 600 !important;
+                font-size: 0.9rem;
+                text-align: center;
+                border-radius: 12px;
+                padding: 12px 16px;
+            }
+        }
+
         /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
@@ -992,7 +1082,6 @@
             .projects-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
             .hamburger { display: flex; z-index: 1001; }
             section { padding: 72px 20px; }
             .hero { padding: 100px 20px 60px; }
@@ -1395,17 +1484,26 @@
 
     // Hamburger + drawer
     const hamburger = document.getElementById('hamburger');
-    const navDrawer = document.getElementById('navDrawer');
-    
+    const navLinks = document.getElementById('navLinks');
+
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
-        navDrawer.classList.toggle('open');
+        navLinks.classList.toggle('open');
+        nav.classList.toggle('drawer-open');
     });
-    
+
     function closeDrawer() {
         hamburger.classList.remove('active');
-        navDrawer.classList.remove('open');
+        navLinks.classList.remove('open');
+        nav.classList.remove('drawer-open');
     }
+
+    // Close dropdown when tapping outside
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !navLinks.contains(e.target)) {
+            closeDrawer();
+        }
+    });
     
     // Scroll reveal with stagger
     const revealElements = document.querySelectorAll('.reveal');
@@ -1422,10 +1520,11 @@
         observer.observe(el);
     });
 
-    // Smooth scroll
+    // Smooth scroll + close drawer on nav click
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
+            closeDrawer();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
