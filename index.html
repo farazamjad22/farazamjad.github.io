@@ -169,33 +169,33 @@
             background: var(--blue) !important;
         }
 
-        /* ===== MOBILE MENU TRIGGER ===== */
+        /* ===== MOBILE MENU TRIGGER PILL ===== */
         .hamburger {
             display: none;
             align-items: center;
             gap: 10px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 99px;
-            padding: 8px 14px 8px 8px;
+            padding: 7px 14px 7px 7px;
             cursor: pointer;
             transition: all 0.25s;
         }
         .hamburger:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(10,132,255,0.3);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(10,132,255,0.4);
         }
         .hamburger-icon {
-            width: 32px; height: 32px;
+            width: 30px; height: 30px;
             background: var(--blue);
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 3.5px;
             flex-shrink: 0;
-            box-shadow: 0 0 12px rgba(10,132,255,0.4);
+            box-shadow: 0 0 14px rgba(10,132,255,0.45);
         }
         .hamburger-icon span {
             display: block;
@@ -204,65 +204,40 @@
             border-radius: 2px;
             transition: all 0.3s;
         }
-        .hamburger-icon span:nth-child(1) { width: 14px; }
-        .hamburger-icon span:nth-child(2) { width: 10px; }
-        .hamburger-icon span:nth-child(3) { width: 14px; }
+        .hamburger-icon span:nth-child(1),
+        .hamburger-icon span:nth-child(3) { width: 13px; }
+        .hamburger-icon span:nth-child(2) { width: 9px; }
         .hamburger-label {
             font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-secondary);
+            white-space: nowrap;
         }
-        
-        /* ===== AVAILABLE BADGE (always visible on mobile) ===== */
-        .nav-available-badge {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 7px 16px;
-            background: rgba(48,209,88,0.06);
-            border-bottom: 1px solid rgba(48,209,88,0.12);
-            font-size: 0.72rem;
-            color: #86efac;
-            overflow: hidden;
-            max-height: 40px;
-            transition: max-height 0.3s ease, opacity 0.2s, padding 0.3s;
-        }
-        .nav-available-badge .badge-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 5px var(--green);
-            animation: pulse 2s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-        /* hide badge strip when drawer is open */
-        .nav-available-badge.hidden { max-height: 0; opacity: 0; padding: 0; }
-        
-        /* ===== NAV DRAWER ===== */
+
+        /* ===== MOBILE DRAWER ===== */
         .nav-drawer {
+            display: none;
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 999;
-            background: rgba(7,9,15,0.97);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            padding: 20px 20px 28px;
-            display: flex;
+            z-index: 1100;
+            background: rgba(8,8,12,0.97);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            padding: 20px 16px 28px;
             flex-direction: column;
-            gap: 8px;
+            gap: 7px;
             transform: translateY(-110%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
             border-bottom: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6);
         }
         .nav-drawer.open { transform: translateY(0); }
-        
+
         .drawer-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             padding-bottom: 16px;
             border-bottom: 1px solid rgba(255,255,255,0.07);
         }
@@ -270,116 +245,100 @@
             font-weight: 600;
             font-size: 0.95rem;
             color: var(--text);
-            display: flex; align-items: center; gap: 8px;
-            text-decoration: none;
-        }
-        .close-pill {
             display: flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            gap: 8px;
+            text-decoration: none;
+        }
+        .drawer-close-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 99px;
-            padding: 6px 12px 6px 8px;
+            padding: 7px 14px 7px 8px;
             cursor: pointer;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             font-family: var(--font-sf);
+            transition: all 0.2s;
         }
-        .close-x {
+        .drawer-close-pill:hover { background: rgba(255,255,255,0.1); }
+        .drawer-close-x {
             width: 20px; height: 20px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 0.7rem;
-            color: var(--text);
+            font-size: 0.68rem;
         }
         .drawer-nav-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 16px;
+            padding: 13px 16px;
             border-radius: 14px;
             background: rgba(255,255,255,0.03);
             border: 1px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s;
             text-decoration: none;
             color: var(--text);
+            transition: all 0.2s;
         }
         .drawer-nav-item:hover {
-            background: rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.07);
             border-color: rgba(255,255,255,0.08);
         }
         .drawer-nav-item-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 13px;
         }
         .drawer-nav-icon {
-            width: 36px; height: 36px;
-            border-radius: 10px;
+            width: 38px; height: 38px;
+            border-radius: 11px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1rem;
+            font-size: 1.05rem;
             flex-shrink: 0;
         }
         .drawer-nav-title {
             font-weight: 600;
-            font-size: 0.92rem;
+            font-size: 0.93rem;
         }
         .drawer-nav-sub {
             font-size: 0.72rem;
             color: var(--text-tertiary);
-            margin-top: 1px;
+            margin-top: 2px;
         }
-        .drawer-nav-arrow { color: var(--text-tertiary); font-size: 0.8rem; }
+        .drawer-nav-arrow { color: var(--text-tertiary); font-size: 0.85rem; }
         .drawer-divider {
             height: 1px;
             background: rgba(255,255,255,0.07);
-            margin: 4px 0;
+            margin: 5px 0;
         }
         .drawer-resume {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 9px;
             background: var(--blue);
             color: #fff;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             padding: 15px;
             border-radius: 14px;
             cursor: pointer;
-            box-shadow: 0 0 24px rgba(10,132,255,0.35);
-            margin-top: 4px;
+            box-shadow: 0 0 28px rgba(10,132,255,0.4);
+            margin-top: 5px;
             text-decoration: none;
+            transition: opacity 0.2s;
         }
+        .drawer-resume:hover { opacity: 0.88; }
         .drawer-resume-arrow {
             width: 22px; height: 22px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.18);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.75rem;
-        }
-        .drawer-avail {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(48,209,88,0.08);
-            border: 1px solid rgba(48,209,88,0.2);
-            border-radius: 10px;
-            padding: 9px 14px;
-            font-size: 0.75rem;
-            color: #86efac;
-            margin-top: 4px;
-        }
-        .drawer-avail-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 6px var(--green);
-            animation: pulse 2s ease-in-out infinite;
-            flex-shrink: 0;
         }
 
         /* ===== HERO ===== */
@@ -1186,39 +1145,23 @@
             .projects-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .hamburger { display: flex; z-index: 1001; }
-            section { padding: 72px 20px; }
-            .hero { padding: 100px 20px 60px; }
-            .about-stats { grid-template-columns: 1fr 1fr; }
-        
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(10, 10, 12, 0.97);
-                backdrop-filter: blur(40px);
-                -webkit-backdrop-filter: blur(40px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                z-index: 999;
+            /* Nav becomes full-width bar, no floating pill */
+            nav {
+                top: 0; left: 0; right: 0;
+                transform: none;
                 border-radius: 0;
+                border-left: none; border-right: none; border-top: none;
+                padding: 14px 20px;
+                max-width: 100%; width: 100%;
+                background: rgba(8,8,12,0.94);
             }
-            .nav-links.open {
-                display: flex;
-            }
-            .nav-links li a {
-                font-size: 1.4rem;
-                padding: 14px 32px;
-                color: var(--text);
-            }
-            .nav-links li a.nav-cta {
-                margin-top: 16px;
-                background: var(--blue);
-                color: #fff;
-                border-radius: 100px;
-            }
+            .nav-inner { justify-content: space-between; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-drawer { display: flex; }
+            section { padding: 80px 20px; }
+            .hero { padding: 90px 20px 60px; }
+            .about-stats { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
             .about-stats { grid-template-columns: 1fr; }
@@ -1226,109 +1169,118 @@
             .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
-    </head>
-    <body>
-    
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    
-    <!-- NAV — iOS pill style -->
-    <!-- NAV -->
-    <nav id="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">
-                <span class="swift-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="13" height="13" fill="white">
-                        <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-3.09.635-1.44.616-1.699.616-1.699z"/>
-                    </svg>
-                </span>
-                Faraz
-            </a>
-            <!-- Desktop links -->
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="./Faraz_Amjad_Resume.pdf" download class="nav-cta">↓ Resume</a></li>
-            </ul>
-            <!-- Mobile menu trigger pill -->
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <div class="hamburger-icon">
-                    <span></span><span></span><span></span>
-                </div>
-                <span class="hamburger-label" id="menuLabel">Menu</span>
-            </button>
-        </div>
-    </nav>
-    
-    <!-- Available badge strip (mobile only, below nav) -->
-    <div class="nav-available-badge" id="navAvailBadge">
-        <div class="badge-dot"></div>
-        Available for new iOS projects
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">
+            <span class="swift-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="13" height="13" fill="white">
+                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-3.09.635-1.44.616-1.699.616-1.699z"/>
+                </svg>
+            </span>
+            Faraz
+        </a>
+        <!-- Desktop links -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="./Faraz_Amjad_Resume.pdf" download class="nav-cta">↓ Resume</a></li>
+        </ul>
+        <!-- Mobile menu pill trigger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-icon">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="hamburger-label" id="menuLabel">Menu</span>
+        </button>
     </div>
-    
-    <!-- Mobile drawer -->
-    <div class="nav-drawer" id="navDrawer">
-        <div class="drawer-top">
-            <a href="#" class="drawer-logo">
-                <span class="swift-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="13" height="13" fill="white">
-                        <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-3.09.635-1.44.616-1.699.616-1.699z"/>
-                    </svg>
-                </span>
-                Faraz
-            </a>
-            <div class="close-pill" id="closePill">
-                <div class="close-x">✕</div>
-                Close
-            </div>
-        </div>
-    
-        <a href="#skills" class="drawer-nav-item">
-            <div class="drawer-nav-item-left">
-                <div class="drawer-nav-icon" style="background:rgba(10,132,255,0.15);">🛠️</div>
-                <div>
-                    <div class="drawer-nav-title">Skills</div>
-                    <div class="drawer-nav-sub">Swift, SwiftUI &amp; more</div>
-                </div>
-            </div>
-            <span class="drawer-nav-arrow">›</span>
+</nav>
+
+<!-- Mobile Drawer (slides down, completely separate from nav) -->
+<div class="nav-drawer" id="navDrawer">
+    <div class="drawer-top">
+        <a href="/" class="drawer-logo">
+            <span class="swift-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="13" height="13" fill="white">
+                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-3.09.635-1.44.616-1.699.616-1.699z"/>
+                </svg>
+            </span>
+            Faraz
         </a>
-        <a href="#projects" class="drawer-nav-item">
-            <div class="drawer-nav-item-left">
-                <div class="drawer-nav-icon" style="background:rgba(191,90,242,0.15);">📱</div>
-                <div>
-                    <div class="drawer-nav-title">Projects</div>
-                    <div class="drawer-nav-sub">Selected work</div>
-                </div>
-            </div>
-            <span class="drawer-nav-arrow">›</span>
-        </a>
-        <a href="#contact" class="drawer-nav-item">
-            <div class="drawer-nav-item-left">
-                <div class="drawer-nav-icon" style="background:rgba(48,209,88,0.15);">✉️</div>
-                <div>
-                    <div class="drawer-nav-title">Contact</div>
-                    <div class="drawer-nav-sub">Let's work together</div>
-                </div>
-            </div>
-            <span class="drawer-nav-arrow">›</span>
-        </a>
-    
-        <div class="drawer-divider"></div>
-    
-        <a href="./Faraz_Amjad_Resume.pdf" download class="drawer-resume">
-            Download Resume
-            <div class="drawer-resume-arrow">↓</div>
-        </a>
-        <div class="drawer-avail">
-            <div class="drawer-avail-dot"></div>
-            Available for new iOS projects
-        </div>
+        <button class="drawer-close-pill" id="drawerClose">
+            <div class="drawer-close-x">✕</div>
+            Close
+        </button>
     </div>
+
+    <a href="#about" class="drawer-nav-item">
+        <div class="drawer-nav-item-left">
+            <div class="drawer-nav-icon" style="background:rgba(100,210,255,0.15);">👤</div>
+            <div>
+                <div class="drawer-nav-title">About</div>
+                <div class="drawer-nav-sub">Background & story</div>
+            </div>
+        </div>
+        <span class="drawer-nav-arrow">›</span>
+    </a>
+    <a href="#experience" class="drawer-nav-item">
+        <div class="drawer-nav-item-left">
+            <div class="drawer-nav-icon" style="background:rgba(255,159,10,0.15);">💼</div>
+            <div>
+                <div class="drawer-nav-title">Experience</div>
+                <div class="drawer-nav-sub">Work history</div>
+            </div>
+        </div>
+        <span class="drawer-nav-arrow">›</span>
+    </a>
+    <a href="#skills" class="drawer-nav-item">
+        <div class="drawer-nav-item-left">
+            <div class="drawer-nav-icon" style="background:rgba(10,132,255,0.15);">🛠️</div>
+            <div>
+                <div class="drawer-nav-title">Skills</div>
+                <div class="drawer-nav-sub">Swift, SwiftUI & more</div>
+            </div>
+        </div>
+        <span class="drawer-nav-arrow">›</span>
+    </a>
+    <a href="#projects" class="drawer-nav-item">
+        <div class="drawer-nav-item-left">
+            <div class="drawer-nav-icon" style="background:rgba(191,90,242,0.15);">📱</div>
+            <div>
+                <div class="drawer-nav-title">Projects</div>
+                <div class="drawer-nav-sub">Selected work</div>
+            </div>
+        </div>
+        <span class="drawer-nav-arrow">›</span>
+    </a>
+    <a href="#contact" class="drawer-nav-item">
+        <div class="drawer-nav-item-left">
+            <div class="drawer-nav-icon" style="background:rgba(48,209,88,0.15);">✉️</div>
+            <div>
+                <div class="drawer-nav-title">Contact</div>
+                <div class="drawer-nav-sub">Let's work together</div>
+            </div>
+        </div>
+        <span class="drawer-nav-arrow">›</span>
+    </a>
+
+    <div class="drawer-divider"></div>
+
+    <a href="./Faraz_Amjad_Resume.pdf" download class="drawer-resume">
+        Download Resume
+        <div class="drawer-resume-arrow">↓</div>
+    </a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -1643,9 +1595,9 @@
             <p class="section-desc">Open to iOS developer opportunities in Hamburg and remote. Let's connect.</p>
         </div>
         <div class="contact-grid reveal">
-            <a href="mailto:farazamjad22@gmail.com" class="contact-card">
+            <a href="/cdn-cgi/l/email-protection#adcbccdfccd7ccc0c7ccc99f9fedcac0ccc4c183cec2c0" class="contact-card">
                 <div class="contact-card-icon" style="background:linear-gradient(135deg,var(--blue),var(--teal));">✉️</div>
-                <div class="contact-card-text"><div class="contact-card-label">Email</div><div class="contact-card-value">farazamjad22@gmail.com</div></div>
+                <div class="contact-card-text"><div class="contact-card-label">Email</div><div class="contact-card-value"><span class="__cf_email__" data-cfemail="05636477647f64686f64613737456268646c692b666a68">[email&#160;protected]</span></div></div>
             </a>
             <a href="https://www.linkedin.com/in/farazamjad22" target="_blank" rel="noopener" class="contact-card">
                 <div class="contact-card-icon" style="background:linear-gradient(135deg,#0077b5,#00a0dc);">in</div>
@@ -1678,7 +1630,7 @@
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1690,36 +1642,30 @@
     // Mobile nav drawer
     const hamburger = document.getElementById('hamburger');
     const navDrawer = document.getElementById('navDrawer');
-    const closePill = document.getElementById('closePill');
+    const drawerClose = document.getElementById('drawerClose');
     const menuLabel = document.getElementById('menuLabel');
-    const navAvailBadge = document.getElementById('navAvailBadge');
-    
+
     function openDrawer() {
         navDrawer.classList.add('open');
-        menuLabel.textContent = 'Close';
-        if (navAvailBadge) navAvailBadge.classList.add('hidden');
+        if (menuLabel) menuLabel.textContent = 'Close';
         document.body.style.overflow = 'hidden';
     }
-    
     function closeDrawer() {
         navDrawer.classList.remove('open');
-        menuLabel.textContent = 'Menu';
-        if (navAvailBadge) navAvailBadge.classList.remove('hidden');
+        if (menuLabel) menuLabel.textContent = 'Menu';
         document.body.style.overflow = '';
     }
-    
-    hamburger.addEventListener('click', () =>
+
+    if (hamburger) hamburger.addEventListener('click', () =>
         navDrawer.classList.contains('open') ? closeDrawer() : openDrawer()
     );
-    if (closePill) closePill.addEventListener('click', closeDrawer);
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+
+    // Close when any drawer link is clicked
+    if (navDrawer) navDrawer.querySelectorAll('a').forEach(link =>
+        link.addEventListener('click', closeDrawer)
+    );
     
-    // Close drawer when a nav link inside it is clicked
-    navDrawer.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeDrawer);
-    });
-    document.querySelectorAll('#navDrawer a').forEach(link => {
-    link.addEventListener('click', closeDrawer);
-    });
     // Scroll reveal with stagger
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -1750,16 +1696,4 @@
         const text = appName.textContent;
         appName.textContent = '';
         let i = 0;
-        function typeChar() {
-            if (i < text.length) {
-                appName.textContent += text[i];
-                i++;
-                setTimeout(typeChar, 60);
-            }
-        }
-        setTimeout(typeChar, 1200);
-    }
-</script>
-
-</body>
-</html>
+        function typ
