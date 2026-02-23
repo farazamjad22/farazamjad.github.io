@@ -992,26 +992,7 @@
             .projects-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            nav {
-                left: 16px; right: 16px;
-                transform: none;
-                border-radius: 16px;
-                padding: 10px 20px;
-            }
-            .nav-links {
-                display: none;
-                position: fixed;
-                inset: 0;
-                background: rgba(0,0,0,0.95);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 24px;
-                backdrop-filter: blur(40px);
-                z-index: 999;
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { font-size: 1.1rem; padding: 10px 20px; }
+            .nav-links { display: none; }
             .hamburger { display: flex; z-index: 1001; }
             section { padding: 72px 20px; }
             .hero { padding: 100px 20px 60px; }
@@ -1407,25 +1388,25 @@
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-        nav.style.background = window.scrollY > 50 
-            ? 'rgba(28,28,30,0.82)' 
-            : 'rgba(28,28,30,0.65)';
+        nav.style.background = window.scrollY > 50
+            ? 'rgba(18,18,20,0.92)'
+            : 'rgba(28,28,30,0.75)';
     });
 
-    // Hamburger
+    // Hamburger + drawer
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+    const navDrawer = document.getElementById('navDrawer');
+    
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
-        navLinks.classList.toggle('open');
+        navDrawer.classList.toggle('open');
     });
-    navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('open');
-        });
-    });
-
+    
+    function closeDrawer() {
+        hamburger.classList.remove('active');
+        navDrawer.classList.remove('open');
+    }
+    
     // Scroll reveal with stagger
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
