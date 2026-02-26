@@ -1537,4 +1537,15 @@
         const text = appName.textContent;
         appName.textContent = '';
         let i = 0;
-        function typ
+        function type() {
+            if (i < text.length) {
+                appName.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, 120);
+            }
+        }
+        type();
+    }
+</script>
+</body>
+</html>
